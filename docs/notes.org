@@ -1,0 +1,15 @@
+
+* Notes
+
+I installed:
+sudo apt install nodejs
+sudo apt install npm
+
+I ran,
+npm init
+to get myself a package.json file.
+
+Then, I ran
+npm install
+
+to install the packages.
