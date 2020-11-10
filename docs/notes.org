@@ -12,4 +12,5 @@ to get myself a package.json file.
 Then, I ran
 npm install
 
-to install the packages.
+to install the packages and save to package.json file:
+npm install express --save
