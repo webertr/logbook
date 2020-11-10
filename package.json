@@ -16,7 +16,7 @@
   "author": "Amos Haviv",
   "license": "MIT",
   "dependencies": {
-    "express": "latest",
+    "express": "^4.17.1",
     "grunt": "latest"
   },
   "repository": {
