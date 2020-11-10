@@ -25,4 +25,17 @@ npm install ejs
 
 You could also just modify the package.json file, then type "npm update".
 
+npm install express-sessions
 
+Then, I installed this:
+sudo apt-get install mongodb
+
+This may be in conflict with the official mongodb repo:
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+
+Read:
+IMPORTANT
+The mongodb package provided by Ubuntu is not maintained by MongoDB Inc. and conflicts with 
+the official mongodb-org package. If you have already installed the mongodb package on your 
+Ubuntu system, you must first uninstall the mongodb package before proceeding with these 
+instructions.
