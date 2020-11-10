@@ -21,3 +21,8 @@ npm install compression
 npm install body-parser
 npm install method-override
 
+npm install ejs
+
+You could also just modify the package.json file, then type "npm update".
+
+
