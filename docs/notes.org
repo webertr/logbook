@@ -14,3 +14,10 @@ npm install
 
 to install the packages and save to package.json file:
 npm install express --save
+
+Then, I ran this:
+npm install morgan
+npm install compression
+npm install body-parser
+npm install method-override
+
