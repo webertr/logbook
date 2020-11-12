@@ -9,4 +9,5 @@ module.exports = function() {
     require('../app/models/user.server.model');
     
     return db;
+    
 };
