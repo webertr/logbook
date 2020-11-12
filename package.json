@@ -23,6 +23,7 @@
       "express-session": "^1.17.1",
       "grunt": "latest",
       "method-override": "^3.0.0",
+      "mongoose": "^5.10.13",
       "morgan": "^1.10.0",
       "passport": "^0.4.1"
    },
