@@ -49,4 +49,41 @@ UserSchema.methods.authenticate = function(password) {
     return this.password === password;
 };
 
+// Pre middle ware
+// UserSchema.pre('save', function(next) {
+//     if (...) {
+// 	next()
+//     } else {
+// 	next(new Error('An Error Occured'));
+//     }
+// });
+
+// post middleware
+// UserSchema.post('save', function(next) {
+//     if(this.isNew) {
+// 	console.log('A new user was created.');
+//     } else {
+// 	console.log('A user updated is details.');
+//     }
+// });
+
 mongoose.model('User', UserSchema);
+
+
+// Second schema
+var PostSchema = new Schema({
+    title: {
+	type: String,
+	required: true
+    },
+    content: {
+	type: String,
+	required: true
+    },
+    author: {
+	type: Schema.ObjectId,
+	ref: 'User'
+    }
+});
+
+mongoose.model('Post', PostSchema);
