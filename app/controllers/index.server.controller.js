@@ -9,3 +9,14 @@ exports.render = function(req, res) {
 	title: 'Hello World'
     })
 };
+
+exports.render = function(req, res) {
+    
+    res.render('index', {
+	title: 'Hello World',
+	userFullName: req.user ? req.user.fullName : ''
+    });
+    
+};
+
+
