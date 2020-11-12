@@ -39,3 +39,23 @@ The mongodb package provided by Ubuntu is not maintained by MongoDB Inc. and con
 the official mongodb-org package. If you have already installed the mongodb package on your 
 Ubuntu system, you must first uninstall the mongodb package before proceeding with these 
 instructions.
+
+
+You run with, "node server"
+
+Go to this website:
+http://localhost:3000/users
+to check the database.
+
+Go to a specific id with:
+http://localhost:3000/users/[id]
+
+where [id] is the user id value.
+
+Add to database with this commandline option:
+curl -X POST -H "Content-Type: application/json" -d '{"firstName":"First", "lastName":"Last","email":"user@example.com","username":"username","password":"password"}' localhost:3000/users
+
+To update a specicfic entry:
+curl -X PUT -H "Content-Type: application/json" -d '{"lastName":"Updated"}' localhost:3000/users/[id]
+
+curl -X PUT -H "Content-Type: application/json" -d '{"lastName":"Updated"}' localhost:3000/users/5fad92ad04b22626c8f30551
