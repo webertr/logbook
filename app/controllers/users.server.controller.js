@@ -80,7 +80,7 @@ var getErrorMessage = function(err) {
 	    message = 'Username already exists';
 	    break;
 	default:
-	    message = 'Something went wrong';
+	    message = 'Something went wrong' + err.code;
 	}
     } else {
 	for (var errName in err.errors) {
@@ -121,7 +121,9 @@ exports.signup = function(req, res, next) {
 	var user = new User(req.body);
 	var message = null;
 	user.provider = 'local';
+	console.log(user);
 	user.save(function(err) {
+	    console.log(err)
 	    if (err) {
 		var message = getErrorMessage(err);
 		req.flash('error', message);
