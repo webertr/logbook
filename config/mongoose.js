@@ -8,6 +8,7 @@ module.exports = function() {
 					   useFindAndModify: false });
     
     require('../app/models/user.server.model');
+    require('../app/models/article.server.model');
     
     return db;
     
