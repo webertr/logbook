@@ -100,7 +100,7 @@ exports.renderSignin = function(req, res, next) {
 	});
     } else {
 	return res.redirect('/');
-	}
+    }
 };
 
 exports.renderSignup = function(req, res, next) {

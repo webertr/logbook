@@ -69,3 +69,12 @@ curl -X DELETE localhost:3000/users/5fad92ad04b22626c8f30551
 
 Adding to new model:
 curl -X POST -H "Content-Type: application/json" -d '{"firstName":"First", "lastName":"Last","email":"user@example.com","username":"username","password":"password"}' localhost:3000/users
+
+
+I had to put some files here:
+public/lib/angular
+public/lib/angular-route
+
+from node_modules/angular
+and
+node_modules/angular-route
