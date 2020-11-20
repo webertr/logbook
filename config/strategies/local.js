@@ -3,7 +3,8 @@ var passport = require('passport'),
     User = require('mongoose').model('User');
 
 module.exports = function() {
-    
+
+    // Gives a callback to the local strategy to figure out if user is valid
     passport.use(new LocalStrategy(function(username, password, done) {
 	User.findOne({
 	    username: username
@@ -21,6 +22,7 @@ module.exports = function() {
 		    message: 'Invalid password'
 		});
 	    }
+	    // This means sucess
 	    return done(null, user);
 	});
     }));

@@ -1,4 +1,6 @@
+// config.js are these environment variables.
 var config = require('./config'),
+    // express is in the node_modules
     express = require('express'),
     morgan = require('morgan'),
     compress = require('compression'),
@@ -9,6 +11,9 @@ var config = require('./config'),
     passport = require('passport');
 
 module.exports = function() {
+
+    // Calling this express function does what?
+    // These creates a new express application in the object "app"
     var app = express();
 
     if (process.env.NODE_ENV === 'development') {
