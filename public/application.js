@@ -1,7 +1,7 @@
 var mainApplicationModuleName = 'mean';
 
 var mainApplicationModule = angular.module(mainApplicationModuleName,
-					   ['ngRoute', 'example']);
+					   ['ngRoute', 'users', 'example']);
 
 // Hashbang support for single page application which just helps with
 // search engines.
@@ -10,6 +10,8 @@ mainApplicationModule.config(['$locationProvider',
 				  $locationProvider.hashPrefix('!');
 			      }
 			     ]);
+
+if (window.location.hash === '#_=_') window.location.hash = '#!';
 
 // Use jqlite to bind a function to the document ready event
 // 
