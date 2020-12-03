@@ -1,0 +1,31 @@
+* Notes
+
+Startup:
+
+fuze@ops:~/Github/logbook$ npx express-generator --view=hbs --git .
+npx: installed 10 in 2.104s
+destination is not empty, continue? [y/N] y
+
+   create : public/
+   create : public/javascripts/
+   create : public/images/
+   create : public/stylesheets/
+   create : public/stylesheets/style.css
+   create : routes/
+   create : routes/index.js
+   create : routes/users.js
+   create : views/
+   create : views/error.hbs
+   create : views/index.hbs
+   create : views/layout.hbs
+   create : .gitignore
+   create : app.js
+   create : package.json
+   create : bin/
+   create : bin/www
+
+   install dependencies:
+     $ npm install
+
+   run the app:
+     $ DEBUG=logbook:* npm start
