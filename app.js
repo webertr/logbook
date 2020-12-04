@@ -7,7 +7,12 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+const { InMemoryNotesStore } = require('./models/notes-memory.js');
+
 var app = express();
+
+// Creating instance of store holding notes in memory
+module.exports.NotesStore = new InMemoryNotesStore();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
