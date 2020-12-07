@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const hbs = require('hbs');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -12,11 +13,15 @@ const { InMemoryNotesStore } = require('./models/notes-memory.js');
 var app = express();
 
 // Creating instance of store holding notes in memory
-module.exports.NotesStore = new InMemoryNotesStore();
+const NotesStore = new InMemoryNotesStore();
+NotesStore.create('corn', 'corn', 'dogs');
+module.exports.NotesStore = NotesStore;
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+hbs.registerPartials(path.join(__dirname, 'partials'));
 
 app.use(logger('dev'));
 app.use(express.json());
