@@ -8,11 +8,12 @@ export const router = express.Router();
 router.get('/', async (req, res, next) => {
     try {
 	const keylist = await notes.keylist();
+	const notelist = [];
+	for (key of keylist) {
+	    let note = await notes.read(key);
+	    notelist.push({ key: note.key, title: note.title });
+	}
 	// console.log(`keylist ${util.inspect(keylist)}`);
-	const keyPromises = keylist.map(key => {
-	    return notes.read(key);
-	});
-	const notelist = await Promise.all(keyPromises);
 	// console.log(util.inspect(notelist));
 	res.render('index', { title: 'Notes', notelist: notelist });
     } catch (err) {
