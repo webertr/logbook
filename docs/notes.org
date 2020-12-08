@@ -29,3 +29,12 @@ destination is not empty, continue? [y/N] y
 
    run the app:
      $ DEBUG=logbook:* npm start
+
+
+So I start by using this express-generator.
+
+I'll use this view engine called hbs.
+
+I had to upgrade to node14 with this:
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt-get install -y nodejs

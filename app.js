@@ -7,18 +7,18 @@ import { default as logger } from 'morgan';
 import { default as cookieParser } from 'cookie-parser';
 import { default as bodyParser } from 'body-parser';
 
-import { InMemoryNotesStore } from './models/notes-memory';
+import { InMemoryNotesStore } from './models/notes-memory.js';
 export const NotesStore = new InMemoryNotesStore();
 
 import * as http from 'http';
-import { approotdir } from './approotdir';
+import { approotdir } from './approotdir.js';
 const __dirname = approotdir;
 import {
     normalizePort, onError, onListening, handle404, basicErrorHandler
-       } from './appsupport';
+       } from './appsupport.js';
 
-import { router as indexRouter } from './routes/index';
-//import { router as notesRouter } from './routes/notes';
+import { router as indexRouter } from './routes/index.js';
+import { router as notesRouter } from './routes/notes.js';
 
 export const app = express();
 
@@ -37,8 +37,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Router function lists
 app.use('/', indexRouter);
+app.use('/notes', notesRouter);
 
-// app.use('/notes', notesRouter);
 // error handlers
 // catch 404 and forward to error handler
 app.use(handle404);

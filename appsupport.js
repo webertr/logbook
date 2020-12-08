@@ -1,4 +1,4 @@
-import { port } from './app';
+import { port } from './app.js';
 
 export function normalizePort(val) {
 
@@ -34,7 +34,7 @@ export function onError(error) {
     }
 }
 
-import { server } from './app';
+import { server } from './app.js';
 export function onListening() {
     const addr = server.address();
     const bind = typeof addr === 'string'
