@@ -4,7 +4,7 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-	"start": "cross-env DEBUG=notes:* node --experimental-modules ./app.mjs"
+	"start": "cross-env DEBUG=notes:* node --experimental-modules ./app"
     },
     "dependencies": {
 	"cookie-parser": "~1.4.4",

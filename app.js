@@ -7,18 +7,18 @@ import { default as logger } from 'morgan';
 import { default as cookieParser } from 'cookie-parser';
 import { default as bodyParser } from 'body-parser';
 
-import { InMemoryNotesStore } from './models/notes-memory.mjs';
+import { InMemoryNotesStore } from './models/notes-memory';
 export const NotesStore = new InMemoryNotesStore();
 
 import * as http from 'http';
-import { approotdir } from './approotdir.mjs';
+import { approotdir } from './approotdir';
 const __dirname = approotdir;
 import {
     normalizePort, onError, onListening, handle404, basicErrorHandler
-       } from './appsupport.mjs';
+       } from './appsupport';
 
-import { router as indexRouter } from './routes/index.mjs';
-//import { router as notesRouter } from './routes/notes.mjs';
+import { router as indexRouter } from './routes/index';
+//import { router as notesRouter } from './routes/notes';
 
 export const app = express();
 
