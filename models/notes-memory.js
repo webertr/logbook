@@ -1,11 +1,11 @@
-const { Note, AbstractNotesStore } = require('./Notes.js');
+import { Note, AbstractNotesStore } from './Notes.mjs';
 
 const notes = [];
 
 /* 
  * This actually implements the data storage.
  */
-module.exports.InMemoryNotesStore = class InMemoryNotesStore extends AbstractNotesStore {
+export class InMemoryNotesStore extends AbstractNotesStore {
     
     async close() { }
     

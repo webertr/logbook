@@ -10,7 +10,7 @@ const _note_body = Symbol('body');
  * in javascript so this is a way to hide class details. If not, you could change a field
  * name a potentially break other code that uses it.
  */
-module.exports.Note = class Note {
+export class Note {
     constructor(key, title, body) {
 	this[_note_key] = key;
 	this[_note_title] = title;
@@ -26,7 +26,7 @@ module.exports.Note = class Note {
 /*
  * The AbstractNotesStore class describes methods for managing some note instances
 */
-module.exports.AbstractNotesStore = class AbstractNotesStore {
+export class AbstractNotesStore {
     async close() { }
     async update(key, title, body) { }
     async create(key, title, body) { }
