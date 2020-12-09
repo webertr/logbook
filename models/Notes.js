@@ -1,7 +1,9 @@
-const _note_key = Symbol('key');
-const _note_title = Symbol('title');
-const _note_body = Symbol('body');
-
+/*
+ * The original implementation used Symbol('key'), but that didn't seem to work.
+ */
+const keyKey = "key";
+const titleKey = "title";
+const bodyKey = "body";
 
 /* 
  * The Note class describes a single note that our application will manage.
@@ -12,15 +14,15 @@ const _note_body = Symbol('body');
  */
 export class Note {
     constructor(key, title, body) {
-	this[_note_key] = key;
-	this[_note_title] = title;
-	this[_note_body] = body;
+	this[keyKey] = key;
+	this[titleKey] = title;
+	this[bodyKey] = body;
     }
-    getkey() { return this[_note_key]; }
-    gettitle() { return this[_note_title]; }
-    settitle(newTitle) { this[_note_title] = newTitle; }
-    getbody() { return this[_note_body]; }
-    setbody(newBody) { this[_note_body] = newBody; }
+    getkey() { return this[keyKey]; }
+    gettitle() { return this[titleKey]; }
+    settitle(newTitle) { this[titleKey] = newTitle; }
+    getbody() { return this[bodyKey]; }
+    setbody(newBody) { this[bodyKey] = newBody; }
 }
 
 /*
