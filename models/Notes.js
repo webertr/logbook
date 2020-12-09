@@ -27,7 +27,7 @@ export class Note {
 
 /*
  * The AbstractNotesStore class describes methods for managing some note instances
-*/
+ */
 export class AbstractNotesStore {
     async close() { }
     async update(key, title, body) { }
