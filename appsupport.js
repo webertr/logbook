@@ -1,5 +1,23 @@
 import { port } from './app.js';
 
+/* 
+ * listening for uncaught exceptions on the process object
+ * This means an error was thrown but was not caught by a try/catch
+ */
+process.on('uncaughtException', function(err) {
+    console.error(`I've crashed!!! - ${(err.stack || err)}`);
+});
+
+import * as util from 'util';
+
+/*
+ * Listenign for unhjandled rejections
+ * This means a Promise ended in a rejected state, but there was no .catch handler
+ */
+process.on('unhandledRejection', (reason, p) => {
+    console.error(`Unhandled Rejection at: ${util.inspect(p)} reason: ${reason}`);
+});
+
 export function normalizePort(val) {
 
     const port = parseInt(val, 10);
