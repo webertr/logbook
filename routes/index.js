@@ -5,6 +5,7 @@ import { NotesStore as notes } from '../app.js';
 
 export const router = express.Router();
 
+
 /* GET home page. */
 router.get('/', async (req, res, next) => {
     try {
