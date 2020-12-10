@@ -1,5 +1,6 @@
 /*
  * The original implementation used Symbol('key'), but that didn't seem to work.
+ * Handlebars code couldn't access it
  */
 const keyKey = "key";
 const titleKey = "title";
