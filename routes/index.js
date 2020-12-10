@@ -1,7 +1,8 @@
 import express from 'express';
 import util from 'util';
 
-import { NotesStore as notes } from '../app.js';
+//import { NotesStore as notes } from '../app.js';
+import { NotesStore as notes } from '../models/notes-store.js';
 
 export const router = express.Router();
 

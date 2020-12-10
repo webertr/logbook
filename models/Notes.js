@@ -34,11 +34,11 @@ export class Note {
     static fromJSON(json) {
 	const data = JSON.parse(json);
 	if (typeof data !== 'object'
-	    || !data.hasOwnProperty('key')
+	    || !data.hasOwnProperty(keyKey)
 	    || typeof data.key !== 'string'
-	    || !data.hasOwnProperty('title')
+	    || !data.hasOwnProperty(titleKey)
 	    || typeof data.title !== 'string'
-	    || !data.hasOwnProperty('body')
+	    || !data.hasOwnProperty(bodyKey)
 	    || typeof data.body !== 'string') {
 	    throw new Error(`Not a Note: ${json}`);
 	}

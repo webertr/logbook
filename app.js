@@ -1,15 +1,18 @@
 import { default as express } from 'express';
 import { default as hbs } from'hbs';
 import * as path from 'path';
-import { default as rfs } from 'rotating-file-stream';
 
 // import * as favicon from 'serve-favicon';
 import { default as logger } from 'morgan';
 import { default as cookieParser } from 'cookie-parser';
 import { default as bodyParser } from 'body-parser';
 
-import { InMemoryNotesStore } from './models/notes-memory.js';
-export const NotesStore = new InMemoryNotesStore();
+//import { InMemoryNotesStore } from './models/notes-memory.js';
+//export const NotesStore = new InMemoryNotesStore();
+import { useModel as useNotesModel } from './models/notes-store.js';
+useNotesModel(process.env.NOTES_MODEL ? process.env.NOTES_MODEL : 'memory')
+    .then(store => { })
+    .catch(error => { onError({ code: 'ENOTESSTORE', error }); });
 
 import * as http from 'http';
 import { approotdir } from './approotdir.js';

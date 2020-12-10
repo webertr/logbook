@@ -5,7 +5,7 @@ const notes = [];
 /* 
  * This actually implements the data storage.
  */
-export class InMemoryNotesStore extends AbstractNotesStore {
+export default class InMemoryNotesStore extends AbstractNotesStore {
     
     async close() { }
     
