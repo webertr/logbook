@@ -1,3 +1,7 @@
+import { default as DBG } from 'debug';
+const debug = DBG('notes:debug');
+const dbgerror = DBG('notes:error');
+
 import { port } from './app.js';
 
 /* 
@@ -9,6 +13,20 @@ process.on('uncaughtException', function(err) {
 });
 
 import * as util from 'util';
+
+import { NotesStore } from './models/notes-store.js';
+
+async function catchProcessDeath() {
+    debug('urk...');
+    await NotesStore.close();
+    await server.close();
+    process.exit(0);
+}
+
+process.on('SIGTERM', catchProcessDeath);
+process.on('SIGINT', catchProcessDeath);
+process.on('SIGHUP', catchProcessDeath);
+process.on('exit', () => { debug('exiting...'); });
 
 /*
  * Listenign for unhjandled rejections
