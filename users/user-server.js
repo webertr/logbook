@@ -33,3 +33,28 @@ process.on('unhandledRejection', (reason, p) => {
     console.error(`UNHANDLED PROMISE REJECTION: ${util.inspect(p)} reason: ${reason}`);
     process.exit(1);
 });
+
+// Mimic API Key authentication.
+var apiKeys = [
+    { user: 'them', key: 'D4ED43C0-8BD6-4FE2-B358-7C0E230D11EF' } ];
+
+function check(req, res, next) {
+    if (req.authorization && req.authorization.basic) {
+	var found = false;
+	for (let auth of apiKeys) {
+	    if (auth.key === req.authorization.basic.password
+		&& auth.user === req.authorization.basic.username) {
+		found = true;
+		break;
+	    }
+	}
+	if (found) next();
+	else {
+	    res.send(401, new Error("Not authenticated"));
+	    next(false);
+	}
+    } else {
+	res.send(500, new Error('No Authorization Key'));
+	next(false);
+    }
+}
