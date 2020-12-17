@@ -20,7 +20,7 @@
 	"sequelize-server2": "cross-env SEQUELIZE_CONNECT=models/sequelize-sqlite.yaml NOTES_MODEL=sequelize PORT=3002 node ./app.js",
 	"mongodb-start": "cross-env DEBUG=notes:* MONGO_URL=mongodb://localhost/ MONGO_DBNAME=chap07 NOTES_MODEL=mongodb node ./app.js",
 	"mongodb-server1": "cross-env DEBUG=notes:* MONGO_URL=mongodb://localhost/ MONGO_DBNAME=chap07 NOTES_MODEL=mongodb PORT=3001 node ./app.js",
-"mongodb-server2": "cross-env DEBUG=notes:* MONGO_URL=mongodb://localhost/ MONGO_DBNAME=chap07 NOTES_MODEL=mongodb PORT=3002 node ./app.js"
+	"mongodb-server2": "cross-env DEBUG=notes:* MONGO_URL=mongodb://localhost/ MONGO_DBNAME=chap07 NOTES_MODEL=mongodb PORT=3002 node ./app.js"
     },
     "dependencies": {
 	"cookie-parser": "~1.4.4",
