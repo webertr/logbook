@@ -1,7 +1,7 @@
 import restify from 'restify';
 import * as util from 'util';
 import { SQUser, connectDB, userParams, findOneUser,
-createUser, sanitizedUser } from './users-sequelize.mjs';
+createUser, sanitizedUser } from './users-sequelize.js';
 import DBG from 'debug';
 
 const log = DBG('users:service');

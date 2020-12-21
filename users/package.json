@@ -1,23 +1,24 @@
 {
-  "name": "users",
-  "version": "1.0.0",
-  "description": "User authentication server",
-  "main": "user-server.js",
-  "scripts": {
-    "test": "cross-env DEBUG=users:* PORT=5858 SEQUELIZE_CONNECT=sequelize-sqlite.yaml node ./user-server.js",
-    "start": "cross-env DEBUG=users:* PORT=5858 SEQUELIZE_CONNECT=sequelize-sqlite.yaml node ./user-server.js"
-  },
-  "author": "Tobin R. Weber",
-  "license": "ISC",
-  "dependencies": {
-    "commander": "^6.2.1",
-    "cross-env": "^7.0.3",
-    "debug": "^4.3.1",
-    "fs-extra": "^9.0.1",
-    "js-yaml": "^3.14.1",
-    "restify": "^8.5.1",
-    "restify-clients": "^3.1.0",
-    "sequelize": "^6.3.5",
-    "sqlite3": "^5.0.0"
-  }
+    "name": "users",
+    "version": "1.0.0",
+    "type": "module",
+    "description": "User authentication server",
+    "main": "user-server.js",
+    "scripts": {
+	"test": "cross-env DEBUG=users:* PORT=5858 SEQUELIZE_CONNECT=sequelize-sqlite.yaml node ./user-server.js",
+	"start": "cross-env DEBUG=users:* PORT=5858 SEQUELIZE_CONNECT=sequelize-sqlite.yaml node ./user-server.js"
+    },
+    "author": "Tobin R. Weber",
+    "license": "ISC",
+    "dependencies": {
+	"commander": "^6.2.1",
+	"cross-env": "^7.0.3",
+	"debug": "^4.3.1",
+	"fs-extra": "^9.0.1",
+	"js-yaml": "^3.14.1",
+	"restify": "^8.5.1",
+	"restify-clients": "^3.1.0",
+	"sequelize": "^6.3.5",
+	"sqlite3": "^5.0.0"
+    }
 }

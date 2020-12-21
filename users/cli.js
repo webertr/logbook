@@ -68,4 +68,30 @@ program
 			     });
     });
 
+program
+    .command('find-or-create <username>')
+    .description('Add a user to the user server')
+    .option('--password <password>', 'Password for new user')
+    .option('--family-name <familyName>',
+	    'Family name, or last name, of the user')
+    .option('--given-name <givenName>', 'Given name, or first name, of the user')
+    .option('--middle-name <middleName>', 'Middle name of the user')
+    .option('--email <email>', 'Email address for the user')
+    .action((username, cmdObj) => {
+	const topost = {
+	    username, password: cmdObj.password, provider: "local",
+	    familyName: cmdObj.familyName,
+	    givenName: cmdObj.givenName,
+	    middleName: cmdObj.middleName,
+	    emails: [], photos: []
+	};
+	if (typeof cmdObj.email !== 'undefined')
+	    topost.emails.push(cmdObj.email);
+	client(program).post('/find-or-create', topost,
+			     (err, req, res, obj) => {
+				 if (err) console.error(err.stack);
+				 else console.log('Found or Created '+ util.inspect(obj));
+			     });
+    });
+
 program.parse(process.argv);
