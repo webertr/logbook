@@ -1,8 +1,11 @@
-import { default as DBG } from 'debug';
-const debug = DBG('notes:debug');
-const dbgerror = DBG('notes:error');
+const DBG = require('debug');
 
-import { port } from './app.js';
+const debug = DBG('shots:debug');
+const dbgerror = DBG('shots:error');
+
+const app = require('./app.js');
+const { port } = app;
+
 
 /* 
  * listening for uncaught exceptions on the process object
@@ -12,13 +15,14 @@ process.on('uncaughtException', function(err) {
     console.error(`I've crashed!!! - ${(err.stack || err)}`);
 });
 
-import * as util from 'util';
+const util = require('util');
 
-import { NotesStore } from './models/notes-store.js';
+const shotsStore = require('./models/shots-psql.js')
+const { PSQLShotsStore } = shotsStore;
 
 async function catchProcessDeath() {
     debug('urk...');
-    await NotesStore.close();
+    await PSQLShotsStore.close();
     await server.close();
     process.exit(0);
 }
@@ -36,7 +40,7 @@ process.on('unhandledRejection', (reason, p) => {
     console.error(`Unhandled Rejection at: ${util.inspect(p)} reason: ${reason}`);
 });
 
-export function normalizePort(val) {
+module.exports.normalizePort = function normalizePort(val) {
 
     const port = parseInt(val, 10);
     if (isNaN(port)) {
@@ -48,7 +52,7 @@ export function normalizePort(val) {
     return false;
 }
 
-export function onError(error) {
+module.exports.onError = function onError(error) {
     
     if (error.syscall !== 'listen') {
 	throw error;
@@ -74,8 +78,9 @@ export function onError(error) {
     }
 }
 
-import { server } from './app.js';
-export function onListening() {
+const { server } = app;
+
+module.exports.onListening = function onListening() {
     const addr = server.address();
     const bind = typeof addr === 'string'
 	  ? 'pipe ' + addr
@@ -84,13 +89,13 @@ export function onListening() {
 }
 
 
-export function handle404(req, res, next) {
+module.exports.handle404 = function handle404(req, res, next) {
     const err = new Error('Not Found');
     err.status = 404;
     next(err);
 }
 
-export function basicErrorHandler(err, req, res, next) {
+module.exports.basicErrorHandler = function basicErrorHandler(err, req, res, next) {
     // Defer to built-in error handler if headersSent
     // See: http://expressjs.com/en/guide/error-handling.html
     if (res.headersSent) {

@@ -1,30 +1,28 @@
-import { default as express } from 'express';
-import { default as hbs } from'hbs';
-import * as path from 'path';
+const express = require('express');
+const hbs = require('hbs');
+
+const path = require('path');
 
 // import * as favicon from 'serve-favicon';
-import { default as logger } from 'morgan';
-import { default as cookieParser } from 'cookie-parser';
-import { default as bodyParser } from 'body-parser';
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
-//import { InMemoryNotesStore } from './models/notes-memory.js';
-//export const NotesStore = new InMemoryNotesStore();
-import { useModel as useNotesModel } from './models/notes-store.js';
-useNotesModel(process.env.NOTES_MODEL ? process.env.NOTES_MODEL : 'memory')
-    .then(store => { })
-    .catch(error => { onError({ code: 'ENOTESSTORE', error }); });
+const http = require('http');
+const approotdir = require('./approotdir.js');
 
-import * as http from 'http';
-import { approotdir } from './approotdir.js';
-const __dirname = approotdir;
-import {
-    normalizePort, onError, onListening, handle404, basicErrorHandler
-       } from './appsupport.js';
+__dirname = approotdir.approotdir;
+const appsupport = require('./appsupport.js');
+const { normalizePort, onError, onListening, handle404, basicErrorHandler } = appsupport;
 
-import { router as indexRouter } from './routes/index.js';
-import { router as notesRouter } from './routes/notes.js';
+const index = require('./routes/index.js');
+const shots = require('./routes/shots.js');
 
-export const app = express();
+const indexRouter = index.router;
+const shotsRouter = shots.router;
+
+const app = express();
+module.export.app = app;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,17 +39,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Router function lists
 app.use('/', indexRouter);
-app.use('/notes', notesRouter);
+app.use('/shots', shotsRouter);
 
 // error handlers
 // catch 404 and forward to error handler
 app.use(handle404);
 app.use(basicErrorHandler);
 
-export const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3000');
+module.export.port = port;
 app.set('port', port);
 
-export const server = http.createServer(app);
+const server = http.createServer(app);
+module.export.server = server;
 server.listen(port);
 
 server.on('error', onError);

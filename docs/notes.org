@@ -39,6 +39,12 @@ I had to upgrade to node14 with this:
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
+Had to run:
+npm install pg
+npm install cross-env
+npm update
+
+
 
 * Outline
 

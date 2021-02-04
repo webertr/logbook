@@ -1,15 +1,15 @@
 {
     "name": "logbook",
-    "type": "module",
     "version": "0.0.0",
     "private": true,
     "scripts": {
-	"start": "cross-env DEBUG=notes:* node --experimental-modules ./app",
-	"sqlite3-server2": "cross-env PSQL_FILE=chap07.psql NOTES_MODEL=sqlite3 PORT=3002 node ./app.js",
+	"start": "cross-env DEBUG=shots:* node ./app"
     },
     "dependencies": {
 	"cookie-parser": "~1.4.4",
+	"cross-env": "^7.0.3",
 	"debug": "~2.6.9",
+	"esm": "^3.2.25",
 	"express": "^4.16.4",
 	"express-session": "^1.17.1",
 	"fs-extra": "^9.0.1",
