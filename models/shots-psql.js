@@ -1,8 +1,13 @@
-import util from 'util';
-import { Shot, AbstractShotsStore } from './Shots.js';
-import { Client } from 'pg';
+const util = require('util');
+const Shots = require('./Shots.js');
 
-import { default as DBG } from 'debug';
+const { Shot, AbstractShotsStore } = Shots;
+
+const pg = require('pg');
+const { Client } = pg;
+
+const debugModule = require('debug');
+const DBG = debugModule();
 
 const debug = DBG('shots:shots-psql');
 const error = DBG('shots:error-psql');
@@ -24,7 +29,7 @@ const pgConfig = {
 
 const client = new Client(pgConfig);
 
-export default class PSQLShotsStore extends AbstractShotsStore {
+class PSQLShotsStore extends AbstractShotsStore {
 
     async close() {
 	try {
@@ -109,3 +114,4 @@ export default class PSQLShotsStore extends AbstractShotsStore {
     
 }
 
+module.exports = PSQLShotsStore;

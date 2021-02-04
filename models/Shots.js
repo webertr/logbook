@@ -11,7 +11,7 @@ const shot_data = "shotdata";
  * in javascript so this is a way to hide class details. If not, you could change a field
  * name a potentially break other code that uses it.
  */
-export class Shot {
+class Shot {
     constructor(shotData) {
 	this[shot_data] = shotData;
     }
@@ -20,7 +20,7 @@ export class Shot {
 
 }
 
-export class AbstractShotsStore {
+class AbstractShotsStore {
     
     async close() {}
     async update(shotData) {}
@@ -28,3 +28,6 @@ export class AbstractShotsStore {
     async shotlist() {}
 
 }
+
+module.exports.Shot = Shot;
+module.exports.AbstractShotsStore = AbstractShotsStore;
