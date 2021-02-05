@@ -22,7 +22,7 @@ const indexRouter = index.router;
 const shotsRouter = shots.router;
 
 const app = express();
-module.export.app = app;
+module.exports.app = app;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -47,11 +47,11 @@ app.use(handle404);
 app.use(basicErrorHandler);
 
 const port = normalizePort(process.env.PORT || '3000');
-module.export.port = port;
+module.exports.port = port;
 app.set('port', port);
 
 const server = http.createServer(app);
-module.export.server = server;
+module.exports.server = server;
 server.listen(port);
 
 server.on('error', onError);

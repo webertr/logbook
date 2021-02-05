@@ -13,11 +13,11 @@ const debug = DBG('shots:shots-psql');
 const error = DBG('shots:error-psql');
 
 // Setting environment variables like this, for now
-process.env.PGUSER = dbuser;
-process.env.PGHOST = locahost;
-process.env.PGDATABASE = mydb;
-process.env.PGPORT = PORT;
-process.env.PGPASSWORD = "password";
+process.env.PGUSER = "csa";
+process.env.PGHOST = "localhost";
+process.env.PGDATABASE = "fuzelogbooktest";
+process.env.PGPORT = 5432;
+process.env.PGPASSWORD = "csapsql";
 
 const pgConfig = {
     user: process.env.PGUSER,

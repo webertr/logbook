@@ -1,10 +1,10 @@
-import express from 'express';
-import util from 'util';
+const express = require('express');
+const util = require('util');
 
-//import { NotesStore as notes } from '../app.js';
-import { PSQLShotsStore as shots } from '../models/shots-psql.js';
+const shotsPSQL = require('../models/shots-psql.js');
+const shots = shotsPSQL.PSQLShotsStore;
 
-export const router = express.Router();
+const router = express.Router();
 
 /* GET home page. */
 router.get('/', async (req, res, next) => {
@@ -20,3 +20,5 @@ router.get('/', async (req, res, next) => {
     	next(err);
     }
 });
+
+module.exports.router = router;

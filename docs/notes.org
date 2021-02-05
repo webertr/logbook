@@ -53,3 +53,7 @@ What will we need?
 Routes:
 
 
+
+* PSQL Setup
+
+I did this:

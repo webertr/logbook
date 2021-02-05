@@ -3,9 +3,9 @@ const DBG = require('debug');
 const debug = DBG('shots:debug');
 const dbgerror = DBG('shots:error');
 
-const app = require('./app.js');
+const app = require('./app');
 const { port } = app;
-
+console.log(port);
 
 /* 
  * listening for uncaught exceptions on the process object
@@ -82,9 +82,10 @@ const { server } = app;
 
 module.exports.onListening = function onListening() {
     const addr = server.address();
-    const bind = typeof addr === 'string'
-	  ? 'pipe ' + addr
-	  : 'port ' + addr.port;
+    const bind = typeof addr;
+    bind === 'string'
+	? 'pipe ' + addr
+	: 'port ' + addr.port;
     console.log(`Listening on ${bind}`);
 }
 
