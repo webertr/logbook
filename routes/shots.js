@@ -2,7 +2,8 @@ const express = require('express');
 const util = require('util');
 
 const shotsPSQL = require('../models/shots-psql.js');
-const shots = shotsPSQL.PSQLShotsStore;
+const { PSQLShotsStore } = shotsPSQL;
+const shots = new PSQLShotsStore();
 
 const router = express.Router();
 

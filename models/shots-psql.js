@@ -33,14 +33,13 @@ class PSQLShotsStore extends AbstractShotsStore {
 
     async close() {
 	try {
-	    client.close();
+	    client.end();
 	} catch (err) {
-	    client.close();
+	    client.end();
 	    console.log(err.stack);
 	}
     }
     
-    // Called with "await shots.update(shotData)". Needs to return a promise.
     async update(shotData) {
 	
 	const text = 'INSERT INTO users(name, email) VALUES($1, $2) RETURNING *';
@@ -53,7 +52,7 @@ class PSQLShotsStore extends AbstractShotsStore {
 	    console.log(res.rows[0])
 	    return res.rows[0];
 	} catch (err) {
-	    client.close();
+	    client.end();
 	    console.log(err.stack)
 	}
 	
@@ -71,7 +70,7 @@ class PSQLShotsStore extends AbstractShotsStore {
 	    console.log(res.rows[0])
 	    return res.rows[0];
 	} catch (err) {
-	    client.close();
+	    client.end();
 	    console.log(err.stack)
 	}
 	
@@ -89,7 +88,7 @@ class PSQLShotsStore extends AbstractShotsStore {
 	    console.log(res.rows[0])
 	    return res.rows[0];
 	} catch (err) {
-	    client.close();
+	    client.end();
 	    console.log(err.stack)
 	}
 	
@@ -106,7 +105,7 @@ class PSQLShotsStore extends AbstractShotsStore {
 	    console.log(res.rows[0])
 	    return res.rows[0];
 	} catch (err) {
-	    client.close();
+	    client.end();
 	    console.log(err.stack)
 	}
 	
@@ -114,4 +113,4 @@ class PSQLShotsStore extends AbstractShotsStore {
     
 }
 
-module.exports = PSQLShotsStore;
+module.exports.PSQLShotsStore = PSQLShotsStore;

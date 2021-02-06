@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "cross-env DEBUG=shots:* PORT=1234 node ./app"
+        "start": "cross-env DEBUG=shots:* PORT=3000 node ./app"
     },
     "dependencies": {
         "cookie-parser": "~1.4.4",
