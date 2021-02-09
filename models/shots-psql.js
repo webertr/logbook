@@ -27,19 +27,8 @@ const pgConfig = {
     port: process.env.PGPORT,
 };
 
-const client = new Client(pgConfig);
-
 class PSQLShotsStore extends AbstractShotsStore {
 
-    async close() {
-	try {
-	    client.end();
-	} catch (err) {
-	    client.end();
-	    console.log(err.stack);
-	}
-    }
-    
     async update(shotData) {
 	
 	const text = 'INSERT INTO users(name, email) VALUES($1, $2) RETURNING *';
@@ -60,20 +49,19 @@ class PSQLShotsStore extends AbstractShotsStore {
 
     async read(key) {
 
-	const text = 'SELECT * FROM users WHERE id = $1';
-	const values = ['brianc'];
+	const text = 'SELECT * FROM shots WHERE shotnumber=$1';
+	let client;
 	
 	try {
+	    client = new Client(pgConfig);
 	    await client.connect();
-	    await client.query(text, values);
+	    const res = await client.query(text, key);
 	    await client.end()
-	    console.log(res.rows[0])
-	    return res.rows[0];
+	    return res;
 	} catch (err) {
-	    client.end();
-	    console.log(err.stack)
+	    await client.end();
 	}
-	
+		
     }
 
     async getShotList(key) {
@@ -97,16 +85,16 @@ class PSQLShotsStore extends AbstractShotsStore {
     async keylist() {
 
 	const text = 'SELECT shotnumber FROM shots';
+	let client;
 	
 	try {
+	    client = new Client(pgConfig);
 	    await client.connect();
-	    await client.query(text);
+	    const res = await client.query(text);
 	    await client.end()
-	    console.log(res.rows[0])
-	    return res.rows[0];
+	    return res;
 	} catch (err) {
-	    client.end();
-	    console.log(err.stack)
+	    await client.end();
 	}
 	
     }

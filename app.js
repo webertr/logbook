@@ -80,7 +80,7 @@ process.on('uncaughtException', function(err) {
 async function catchProcessDeath() {
     debug('urk...');
     console.log(PSQLShotsStore);
-    await PSQLShotsStoreObject.close();
+    //await PSQLShotsStoreObject.close();
     await server.close();
     process.exit(0);
 }

@@ -11,12 +11,17 @@ const router = express.Router();
 router.get('/', async (req, res, next) => {
     try {
     	const keylist = await shots.keylist();
-    	const shotlist = [];
-    	for (var ii = 0; ii < keylist.length; ii++) {
-    	    let shot = await shots.read(keylist[ii]);
-    	    shotlist.push({ shotNumber: keylist[ii], shotData: shot.shotData });
-    	}
-    	res.render('index', { title: 'Shots', shotlist: shotlist });
+	let key;
+	const shotlist = [];
+	if (keylist) {
+    	    for (let ii = 0; ii < keylist.rows.length; ii++) {
+		key = keylist.rows[ii];
+    		shotlist.push({ shotnumber: key.shotnumber});
+    	    }
+    	    res.render('index', { title: 'Shots', shotlist: shotlist });
+	} else {
+	    shotlist.push({ shotnumber: -1, shotData: "N/A" });
+	}
     } catch (err) {
     	next(err);
     }
