@@ -81,6 +81,48 @@ class PSQLShotsStore extends AbstractShotsStore {
 	}
 	
     }
+
+    async getDayList() {
+
+	const text = 'SELECT shotnumber FROM shots ORDER BY shotnumber ASC';
+	let client;
+	let baseNumber;
+	let baseNumberOld;
+	let baseNumberList;
+	let year;
+	let month;
+	let day;
+	let date;
+	
+	try {
+	    client = new Client(pgConfig);
+	    await client.connect();
+	    const res = await client.query(text);
+	    await client.end();
+	    baseNumberList = [];
+	    baseNumber = (baseNumber-(baseNumber%1000))/1000;
+    	    for (let ii = 0; ii < res.rows.length; ii++) {
+		baseNumber = res.rows[ii].shotnumber;
+		baseNumber = (baseNumber-(baseNumber%1000))/1000;
+		year = (baseNumber-(baseNumber%10000))/10000;
+		day = baseNumber%100;
+		month = ((baseNumber-(baseNumber%100))/100)%100;
+		    
+		if (baseNumberOld == baseNumber) {
+		    continue;
+		} else {
+		    date = new Date(2000+year, month, day);
+		    console.log(date);
+    		    baseNumberList.push( {basenumber: baseNumber, date: date.toDateString() } );
+		    baseNumberOld = baseNumber;
+		}
+    	    }
+	    return baseNumberList;
+	} catch (err) {
+	    await client.end();
+	}
+	
+    }
     
     async keylist() {
 
@@ -92,7 +134,7 @@ class PSQLShotsStore extends AbstractShotsStore {
 	    await client.connect();
 	    const res = await client.query(text);
 	    await client.end()
-	    return res;
+	    return res.rows;
 	} catch (err) {
 	    await client.end();
 	}

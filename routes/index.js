@@ -10,17 +10,12 @@ const router = express.Router();
 /* GET home page. */
 router.get('/', async (req, res, next) => {
     try {
-    	const keylist = await shots.keylist();
-	let key;
-	const shotlist = [];
-	if (keylist) {
-    	    for (let ii = 0; ii < keylist.rows.length; ii++) {
-		key = keylist.rows[ii];
-    		shotlist.push({ shotnumber: key.shotnumber});
-    	    }
-    	    res.render('index', { title: 'Shots', shotlist: shotlist });
+    	const daylist = await shots.getDayList();
+	console.log(daylist);
+	if (daylist) {
+    	    res.render('index', { title: 'Shots', daylist: daylist });
 	} else {
-	    shotlist.push({ shotnumber: -1, shotData: "N/A" });
+	    res.render('index', { title: 'Shots', daylist: null });
 	}
     } catch (err) {
     	next(err);
