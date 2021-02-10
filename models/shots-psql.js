@@ -66,19 +66,21 @@ class PSQLShotsStore extends AbstractShotsStore {
 
     async getShotList(key) {
 
-	const text = 'SELECT * FROM users WHERE id = $1';
-	const values = ['brianc'];
+	let lowerLimit = key * 1000;
+	let upperLimit = key * 1000 + 999;
+	const text = 'SELECT shotnumber FROM shots WHERE shotnumber>=$1 AND shotnumber<=$2';
+	let client;
 	
 	try {
+	    client = new Client(pgConfig);
 	    await client.connect();
-	    await client.query(text, values);
+	    const res = await client.query(text, [lowerLimit, upperLimit]);
 	    await client.end()
-	    console.log(res.rows[0])
-	    return res.rows[0];
+	    return res.rows;
 	} catch (err) {
-	    client.end();
-	    console.log(err.stack)
+	    await client.end();
 	}
+	
 	
     }
 

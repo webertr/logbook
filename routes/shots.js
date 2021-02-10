@@ -10,13 +10,14 @@ const router = express.Router();
 // View base list
 router.get('/view-base/:baseNumber', async (req, res, next) => {
     try {
-	let shotList = await shots.getShotList(baseNumber);
+	let shotlist = await shots.getShotList(req.params.baseNumber);
 	//let colList = await accounts.getUserColList(req.user);
 
+	console.log(shotlist);
 	res.render('dayview', {
-	    baseNumber: baseNumber,
+	    baseNumber: req.params.baseNumber,
 	    //colList : colList,
-	    shotList : shotList,
+	    shotList : shotlist,
 	});
 	
     } catch (err) {
