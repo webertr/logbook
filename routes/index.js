@@ -11,7 +11,6 @@ const router = express.Router();
 router.get('/', async (req, res, next) => {
     try {
     	const daylist = await shots.getDayList();
-	console.log(daylist);
 	if (daylist) {
     	    res.render('index', { title: 'Shots', daylist: daylist });
 	} else {

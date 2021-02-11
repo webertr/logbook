@@ -70,13 +70,20 @@ class PSQLShotsStore extends AbstractShotsStore {
 	let upperLimit = key * 1000 + 999;
 	const text = 'SELECT shotnumber FROM shots WHERE shotnumber>=$1 AND shotnumber<=$2';
 	let client;
+	let shotNumberList;
+	let shotNumber;
 	
 	try {
 	    client = new Client(pgConfig);
 	    await client.connect();
 	    const res = await client.query(text, [lowerLimit, upperLimit]);
 	    await client.end()
-	    return res.rows;
+	    shotNumberList = [];
+    	    for (let ii = 0; ii < res.rows.length; ii++) {
+		shotNumber = res.rows[ii].shotnumber;
+    		shotNumberList.push( {shotnumber: shotNumber } );
+    	    }
+	    return shotNumberList;
 	} catch (err) {
 	    await client.end();
 	}
@@ -114,7 +121,6 @@ class PSQLShotsStore extends AbstractShotsStore {
 		    continue;
 		} else {
 		    date = new Date(2000+year, month, day);
-		    console.log(date);
     		    baseNumberList.push( {basenumber: baseNumber, date: date.toDateString() } );
 		    baseNumberOld = baseNumber;
 		}

@@ -1,0 +1,10 @@
+<h1>{{basenumber}}</h1>
+<p>Welcome to basenumber: {{basenumber}}</p>
+
+<ul>
+{{#each shotlist}}
+  <li>{{ shotnumber }}:
+  <a href="/shots/view-shot/{{ shotnumber }}">{{ shotnumber }}</a>
+  </li>
+{{/each}}
+</ul>
